@@ -3,6 +3,7 @@ import sys
 from objects.Board import Board
 import math
 from utils.game_utils import *
+import numpy as np
 
 
 def main():
@@ -25,8 +26,8 @@ def main():
                     value = END_VALUE
             if pygame.mouse.get_pressed()[0]:
                 pos = pygame.mouse.get_pos()
-                row = (int)(math.floor(pos[0]/BLOCK_SIZE))
-                col = (int)(math.floor(pos[1]/BLOCK_SIZE))
+                col = (int)(math.floor(pos[0]/BLOCK_SIZE))
+                row = (int)(math.floor(pos[1]/BLOCK_SIZE))
                 if row < NUM_ROWS and col < NUM_COLUMNS and row > -1 and col > -1:
                     if value == START_VALUE:
                         if board.getStart() == None:
@@ -38,8 +39,8 @@ def main():
                         board.setValue(row, col, value)
             if pygame.mouse.get_pressed()[2]:
                 pos = pygame.mouse.get_pos()
-                row = (int)(math.floor(pos[0]/BLOCK_SIZE))
-                col = (int)(math.floor(pos[1]/BLOCK_SIZE))
+                col = (int)(math.floor(pos[0]/BLOCK_SIZE))
+                row = (int)(math.floor(pos[1]/BLOCK_SIZE))
                 if row < NUM_ROWS and col < NUM_COLUMNS and row > -1 and col > -1:
                     board.setValue(row, col, DEFAULT_VALUE)
             if event.type == pygame.QUIT:
@@ -50,9 +51,9 @@ def main():
 
 
 def drawGrid(board : Board):
-    for x in range(0, NUM_ROWS):
-        for y in range(0, NUM_COLUMNS):
-            value = board.getValue(x, y)
+    for row in range(0, NUM_ROWS):
+        for col in range(0, NUM_COLUMNS):
+            value = board.getValue(row, col)
             if value == END_VALUE:
                 color = GREEN
             elif value == START_VALUE:
@@ -61,11 +62,11 @@ def drawGrid(board : Board):
                 color = BLACK
             else:
                 color = WHITE
-            rect = pygame.Rect(x*BLOCK_SIZE, y*BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE)
+            rect = pygame.Rect(col*BLOCK_SIZE, row*BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE)
             pygame.draw.rect(SCREEN, color, rect)
-    for x in range(0, NUM_ROWS):
-        for y in range(0, NUM_COLUMNS):
-            rect = pygame.Rect(x*BLOCK_SIZE, y*BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE)
+    for row in range(0, NUM_ROWS):
+        for col in range(0, NUM_COLUMNS):
+            rect = pygame.Rect(col*BLOCK_SIZE, row*BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE)
             pygame.draw.rect(SCREEN, BLACK, rect, 1)
 
 
