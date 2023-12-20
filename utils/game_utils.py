@@ -1,17 +1,27 @@
 import pygame
+import numpy as np
 
 BLACK = pygame.Color('black')
 WHITE = pygame.Color('grey')
 GREEN = pygame.Color('green3')
 RED = pygame.Color('red3')
+YELLOW = pygame.Color('yellow3')
 
-OBSTACLE_VALUE = -1
+UP = np.asarray([0, 1])
+DOWN = np.asarray([0, -1])
+LEFT = np.asarray([-1, 0])
+RIGHT = np.asarray([1, 0])
+MOVE_DIRECTIONS = [UP, DOWN, LEFT, RIGHT]
+
+OBSTACLE_VALUE = -100
 START_VALUE = 0
 END_VALUE = 1000
-DEFAULT_VALUE = 1
+DEFAULT_VALUE = -1
+EXPLORED_VALUE = 1
 
-NUM_ROWS = 10
-NUM_COLUMNS = 10
+GRID_SIZE = 6
+NUM_ROWS = GRID_SIZE
+NUM_COLUMNS = GRID_SIZE
 
 BLOCK_SIZE = 40
 
