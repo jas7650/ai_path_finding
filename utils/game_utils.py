@@ -27,3 +27,10 @@ BLOCK_SIZE = 40
 
 WINDOW_HEIGHT = NUM_ROWS * BLOCK_SIZE
 WINDOW_WIDTH = NUM_COLUMNS * BLOCK_SIZE
+
+def remove_duplicates(list):
+    temp = []
+    for value in list:
+        if value not in temp:
+            temp.append(value)
+    return temp

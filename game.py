@@ -40,7 +40,7 @@ def main():
                                 board.setValue(previous_start, DEFAULT_VALUE)
                             board.setValue(location, value)
                             if board.getEnd() != None:
-                                node = Node(location, board)
+                                node = Node(location, board, [], 0)
                                 node.explore()
                                 bestPath = node.getBestPath()
                                 for path_location in bestPath:
@@ -53,7 +53,7 @@ def main():
                                 board.setValue(previous_stop, DEFAULT_VALUE)
                             board.setValue(location, value)
                             if board.getStart() != None:
-                                node = Node(board.getStart(), board)
+                                node = Node(board.getStart(), board, [], 0)
                                 node.explore()
                                 bestPath = node.getBestPath()
                                 for path_location in bestPath:
