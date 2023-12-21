@@ -7,7 +7,8 @@ class Board(object):
     def __init__(self, rows, columns):
         self.rows = rows
         self.columns = columns
-        self.state = np.ones((rows, columns))*-1
+        self.state = []
+        self.state = np.ones((rows, columns)) * DEFAULT_VALUE
 
 
     def getState(self):
@@ -26,14 +27,30 @@ class Board(object):
         for row in range(self.state.shape[0]):
             for col in range(self.state.shape[1]):
                 if self.state[row, col] == START_VALUE:
-                    return row, col
+                    return np.asarray([row, col])
                 
 
     def getEnd(self):
         for row in range(self.state.shape[0]):
             for col in range(self.state.shape[1]):
                 if self.state[row, col] == END_VALUE:
-                    return row, col
+                    return np.asarray([row, col])
+                
+
+    def hasStart(self):
+        for row in range(self.state.shape[0]):
+            for col in range(self.state.shape[1]):
+                if self.state[row, col] == START_VALUE:
+                    return True
+        return False
+
+
+    def hasEnd(self):
+        for row in range(self.state.shape[0]):
+            for col in range(self.state.shape[1]):
+                if self.state[row, col] == END_VALUE:
+                    return True
+        return False
                 
 
     def getPath(self, start, stop):

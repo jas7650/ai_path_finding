@@ -16,6 +16,14 @@ class Node(object):
             self.end_node = True
         if not self.end_node:
             self.board.setValue(location, EXPLORED_VALUE)
+        self.done = False
+        self.current_child = None
+
+
+    def getBoard(self):
+        if self.done == False:
+            return self.current_child.getBoard()
+        return self.board
 
 
     def getBestPath(self):
@@ -66,6 +74,7 @@ class Node(object):
                 node = Node(move, self.board, self.explore_list, self.num_parents+1)
                 if self.potential_candidate(node):
                     self.explore_list.append(node)
+                    self.current_child = node
                     if node.getEndNode():
                         self.best_child = node
                     else:
@@ -78,6 +87,7 @@ class Node(object):
                                     self.best_child = node
                         self.explore_list.extend(node.getExploreList())
                         self.explore_list = remove_duplicates(self.explore_list)
+            self.done = True
 
 
     def potential_candidate(self, node):
